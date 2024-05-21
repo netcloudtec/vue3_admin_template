@@ -92,7 +92,6 @@ export interface SaleAttrResponseData extends ResponseData {
 }
 
 
-
 //已有的全部SPU的返回数据ts类型
 export interface HasSaleAttr {
     id: number,

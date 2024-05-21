@@ -42,7 +42,19 @@
         <SpuForm ref="spu" v-show="scene == 1" @changeScene="changeScene"></SpuForm>
         <!-- 添加SKU的子组件 -->
         <SkuForm ref="sku" v-show="scene == 2" @changeScene="changeScene"></SkuForm>
-
+        <!-- dialog对话框:展示已有的SKU数据 -->
+        <el-dialog v-model="show" title="SKU列表">
+            <el-table border :data="skuArr">
+                <el-table-column label="SKU名字" prop="skuName"></el-table-column>
+                <el-table-column label="SKU价格" prop="price"></el-table-column>
+                <el-table-column label="SKU重量" prop="weight"></el-table-column>
+                <el-table-column label="SKU图片">
+                    <template #="{ row, $index }">
+                        <img :src="row.skuDefaultImg" style="width: 100px;height: 100px;">
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-dialog>
     </el-card>
   </div>
 </template>
@@ -51,9 +63,10 @@
 import { ref, watch, onBeforeUnmount} from 'vue';
 //引入分类的仓库
 import useCategoryStore from "@/store/modules/category";
-import type { HasSpuResponseData, Records} from '@/api/product/spu/type'
+import type { HasSpuResponseData, Records,SkuInfoData,SkuData} from '@/api/product/spu/type'
 import { reqHasSpu, reqSkuList, reqRemoveSpu } from '@/api/product/spu';
 import type { SpuData } from '@/api/product/spu/type'
+import { ElMessage } from 'element-plus';
 
 
 //引入子组件
@@ -76,7 +89,9 @@ let total = ref<number>(0);
 let spu = ref<any>();
 //获取子组件实例SkuForm
 let sku = ref<any>();
-
+//存储全部的SKU数据
+let skuArr = ref<SkuData[]>([]);
+let show = ref<boolean>(false);
 //监听三级分类ID变化
 watch(() => categoryStore.c3Id, () => {
     //当三级分类发生变化的时候清空对应的数据
@@ -139,6 +154,32 @@ const addSku = (row: SpuData) => {
     sku.value.initSkuData(categoryStore.c1Id, categoryStore.c2Id, row);
 }
 
+//查看SKU列表的数据
+const findSku = async (row: SpuData) => {
+    let result: SkuInfoData = await reqSkuList((row.id as number));
+    if (result.code == 200) {
+        skuArr.value = result.data;
+        //对话框显示出来
+        show.value = true;
+    }
+}
+//删除已有的SPU按钮的回调
+const deleteSpu = async (row: SpuData) => {
+    let result: any = await reqRemoveSpu((row.id as number));
+    if (result.code == 200) {
+        ElMessage({
+            type: 'success',
+            message: '删除成功'
+        });
+        //获取剩余SPU数据
+        getHasSpu(records.value.length > 1 ? pageNo.value : pageNo.value - 1)
+    } else {
+        ElMessage({
+            type: 'error',
+            message: '删除失败'
+        })
+    }
+}
 //路由组件销毁前，情况仓库关于分类的数据
 onBeforeUnmount(() => {
     categoryStore.$reset();

@@ -24,7 +24,8 @@ enum API {
   REMOVESPU_URL = '/admin/product/deleteSpu/'
 }
 //获取某一个三级分类下已有的SPU数据
-export const reqHasSpu = (page: number, limit: number, category3Id: string | number) => request.get<any, HasSpuResponseData>(API.HASSPU_URL + `${page}/${limit}?category3Id=${category3Id}`);
+export const reqHasSpu = (page: number, limit: number, category3Id: string | number) => 
+  request.get<any, HasSpuResponseData>(API.HASSPU_URL + `${page}/${limit}?category3Id=${category3Id}`);
 //获取全部的SPU的品牌的数据
 export const reqAllTradeMark = () => request.get<any, AllTradeMark>(API.ALLTRADEMARK_URL);
 //获取某一个已有的SPU下全部商品的图片地址
