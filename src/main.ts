@@ -6,7 +6,9 @@ import 'element-plus/dist/index.css'
 // 配置element-plus国际化
 // @ts-ignore 解决打包异常问题
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-// svg插件需要配置的代码
+// 暗黑模式需要的样式
+import 'element-plus/theme-chalk/dark/css-vars.css'
+// svg插件需要配样式置的代码
 import 'virtual:svg-icons-register'
 import gloablComponent from '@/components/index';
 // 引入模板全局样式

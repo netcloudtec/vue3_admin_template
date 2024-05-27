@@ -35,6 +35,7 @@ onMounted(() => {
     }, 1000);
 });
 
+// 组件销毁，定时器清掉
 onBeforeUnmount(() => {
     clearInterval(timer.value);
 })
@@ -52,21 +53,20 @@ onBeforeUnmount(() => {
         background-size: cover;
 
         .lbtn {
-            width: 150px;
-            height: 40px;
+            width: 160px;
+            height: 50px;
             float: right;
             background: url(../../images/dataScreen-header-btn-bg-l.png) no-repeat;
             background-size: 100% 100%;
             text-align: center;
             line-height: 40px;
             color: #29fcff;
-            font-size: 20px;
+            font-size: 30px;
         }
     }
 
     .center {
         flex: 2;
-
         .title {
             width: 100%;
             height: 74px;
@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
             text-align: center;
             line-height: 74px;
             color: #29fcff;
-            font-size: 30px;
+            font-size: 40px;
         }
     }
 
@@ -88,20 +88,19 @@ onBeforeUnmount(() => {
         align-items: center;
 
         .rbtn {
-            width: 150px;
-            height: 40px;
+            width: 160px;
+            height: 50px;
             background: url(../../images/dataScreen-header-btn-bg-r.png) no-repeat;
             background-size: 100% 100%;
             text-align: center;
             line-height: 40px;
             color: #29fcff;
+            font-size: 30px;
         }
-
         .time {
             color: #29fcff;
-            font-size: 20px;
+            font-size: 30px;
         }
-
 
     }
 }

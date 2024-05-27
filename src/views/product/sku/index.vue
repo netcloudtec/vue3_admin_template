@@ -123,7 +123,7 @@ const updateSale = async (row: SkuData) => {
       getHasSku(pageNo.value);
 
   } else {
-      //下架操作
+      //上架操作
       await reqSaleSku((row.id as number));
       //提示信息
       ElMessage({ type: 'success', message: '上架成功' });
@@ -139,7 +139,7 @@ const updateSku = () => {
 const findSku = async (row: SkuData) => {
   //抽屉展示出来
   drawer.value = true;
-  //获取已有商品详情数据
+  //获取已有商品详情数据  
   let result: SkuInfoData = await reqSkuInfo((row.id as number));
   //存储已有的SKU
   skuInfo.value = result.data;
