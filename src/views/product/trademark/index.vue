@@ -1,8 +1,7 @@
 <template>
-  <div>
     <el-card class="box-card">
       <!-- 卡片顶部添加品牌按钮,之前就已经把element-plus中的图标注册为了全局组件，所以icon="plus"可以直接使用-->
-      <el-button type="primary" size="default" icon="plus" @click="addTrademark">添加品牌</el-button>
+      <el-button type="primary" size="default" icon="plus" @click="addTrademark" v-has="`btn.Trademark.add`">添加品牌</el-button>
       <!-- 表格组件：用于展示已有的平台数据-->
       <!-- 
       Table
@@ -84,7 +83,6 @@
         <el-button type="primary" size="default" @click="confirm">确定</el-button>
       </template>
     </el-dialog>
-  </div>
 </template>
   
 <script setup lang="ts">

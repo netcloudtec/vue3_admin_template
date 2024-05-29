@@ -1,4 +1,4 @@
-// 对外暴漏配置路由(常量路由)
+// 对外暴漏配置路由(常量路由)：全部用户都可以访问到的路由
 export const constantRoute = [
     {
         // 登录
@@ -11,6 +11,7 @@ export const constantRoute = [
             icon: "Promotion",//菜单文字左侧的图标,支持element-plus全部图标
         }
     },
+
     {
         // 登录成功以后展示数据的路由
         path: '',
@@ -47,16 +48,6 @@ export const constantRoute = [
         }
     },
     {
-        path: '/:pathMatch(.*)*',
-        redirect: '/404',
-        name: 'Any',
-        meta: {
-            title: '任意路由',
-            hidden: true,
-            icon: 'DataLine'
-        }
-    },
-    {
         path: '/screen',
         component: () => import('@/views/screen/index.vue'),
         name: 'Screen',
@@ -65,8 +56,12 @@ export const constantRoute = [
             hidden: false,
             icon: 'Platform'
         }
-    },
+    }
 
+]
+
+// 对外暴露异步路由
+export const asnycRoute = [
     {
         path: '/acl',
         component: () => import('@/layout/index.vue'),
@@ -81,7 +76,7 @@ export const constantRoute = [
             {
                 path: '/acl/user',
                 component: () => import('@/views/acl/user/index.vue'),
-                name: 'Acl',
+                name: 'User',
                 meta: {
                     title: '用户管理',
                     hidden: false,
@@ -124,7 +119,7 @@ export const constantRoute = [
             {
                 path: '/product/tradmark',
                 component: () => import('@/views/product/trademark/index.vue'),
-                name: 'Tradmark',
+                name: 'Trademark',
                 meta: {
                     title: '品牌管理',
                     hidden: false,
@@ -161,3 +156,16 @@ export const constantRoute = [
         ]
     }
 ]
+
+//任意路由
+export const anyRoute = {
+    //任意路由
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'Any',
+    meta: {
+        title: '任意路由',
+        hidden: true,
+        icon: 'DataLine'
+    }
+}

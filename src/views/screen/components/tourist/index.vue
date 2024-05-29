@@ -115,6 +115,7 @@ onMounted(() => {
             background: url(../../images/total.png) no-repeat;
             background-size: 100% 100%;
             color: #29fcff;
+            font-size: 30px;
         }
     }
 

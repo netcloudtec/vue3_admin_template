@@ -1,6 +1,5 @@
 <template>
     <div class="box4" ref="map">
-        我是地图组件
     </div>
 </template>
 

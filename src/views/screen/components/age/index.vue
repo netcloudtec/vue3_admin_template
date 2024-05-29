@@ -28,7 +28,7 @@ onMounted(() => {
             orient: 'vertical',//图例组件方向的设置
             textStyle: {
                 color: 'white',
-                fontSize: 14
+                fontSize: 20
             }
         },
         series: [
