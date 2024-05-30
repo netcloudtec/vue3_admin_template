@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { getTime } from '@/untils/time'
 //引入用户相关的仓库,获取当前用户的头像、昵称
 import useUserStore from '@/store/modules/user';

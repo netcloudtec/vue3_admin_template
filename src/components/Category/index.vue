@@ -6,19 +6,19 @@
                 <!-- change:选中值发生变化时触发 -->
                 <el-select :disabled="scene == 0 ? false : true" style="width: 150px" v-model="categoryStore.c1Id" @change="handler">
                     <!-- label:即为展示数据 value:即为select下拉菜单收集的数据 -->
-                    <el-option v-for="(c1,index) in categoryStore.c1Arr" :key="c1.id" :label="c1.name" :value="c1.id"></el-option>
+                    <el-option v-for="(c1) in categoryStore.c1Arr" :key="c1.id" :label="c1.name" :value="c1.id"></el-option>
                 </el-select>
             </el-form-item>
 
             <el-form-item label="二级分类">
                 <el-select :disabled="scene == 0 ? false : true" style="width: 150px" v-model="categoryStore.c2Id" @change="handler1">
-                    <el-option v-for="(c2,index) in categoryStore.c2Arr" :key="c2.id" :label="c2.name" :value="c2.id"></el-option>
+                    <el-option v-for="(c2) in categoryStore.c2Arr" :key="c2.id" :label="c2.name" :value="c2.id"></el-option>
                 </el-select>
             </el-form-item>
 
             <el-form-item label="三级分类">
                 <el-select :disabled="scene == 0 ? false : true" style="width: 150px" v-model="categoryStore.c3Id">
-                    <el-option v-for="(c3, index) in categoryStore.c3Arr" :key="c3.id" :label='c3.name' :value="c3.id"></el-option>
+                    <el-option v-for="(c3) in categoryStore.c3Arr" :key="c3.id" :label='c3.name' :value="c3.id"></el-option>
                 </el-select>
             </el-form-item>
         </el-form>
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 //引入生命周期函数钩子
-import { onMounted ,ref} from 'vue';
+import { onMounted} from 'vue';
 //引入分类相关的仓库
 import useCategoryStore from '@/store/modules/category';
 let categoryStore = useCategoryStore();

@@ -1,6 +1,6 @@
 //路由鉴权:鉴权,项目当中路由能不能被的权限的设置(某一个路由什么条件下可以访问、什么条件下不可以访问)
-import router from '@/router';
 import nprogress from 'nprogress';
+import router from '@/router';
 
 import setting from './setting';
 //引入进度条样式
@@ -16,6 +16,7 @@ let userStore = useUserStore(pinia);
 //全局守卫:项目当中任意路由切换都会触发的钩子
 //全局前置守卫
 router.beforeEach(async (to: any, from: any, next: any) => {
+    
     //标题根据切换的导航，动态的进行展示
     document.title = `${setting.title} - ${to.meta.title}`
     //to:你将要访问那个路由
@@ -65,7 +66,7 @@ router.beforeEach(async (to: any, from: any, next: any) => {
     }
 })
 //全局后置守卫
-router.afterEach((to: any, from: any) => {
+router.afterEach(() => {
     nprogress.done();
 });
 
